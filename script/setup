@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+docker-compose build
+docker-compose down  # Verify environment is fresh
+docker-compose up -d postgres
+
+STARTTIME=$(date +%s)
+
+while true
+do
+  echo "[$(($(date +%s) - $STARTTIME))s] Waiting for postgres to be ready..."
+  docker-compose run --rm postgres psql postgresql://admin:admin@postgres/template1 -c select 1 > /dev/null 2>&1 \
+    && break
+done
+
+docker-compose run --rm web bash -c "mix do deps.get, deps.compile, ecto.create, ecto.migrate"
+docker-compose run --rm web bash -c "cd assets && npm install"

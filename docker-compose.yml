@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    image: adopt_a_family
+    container_name: adopt_a_family
+    network_mode: bridge
+    volumes:
+      - "$PWD:/app"
+    links:
+      - postgres
+    ports:
+      - 4000:4000
+    environment:
+      MIX_ENV: dev
+      DB_NAME: adopt_a_family_dev
+
+  test:
+    image: adopt_a_family
+    network_mode: bridge
+    volumes_from:
+      - web
+    links:
+      - postgres
+    environment:
+      MIX_ENV: test
+      DB_NAME: adopt_a_family_test
+    command: ["mix", "test"]
+
+  postgres:
+    image: postgres:9.6
+    container_name: adopt_a_family_postgres
+    network_mode: bridge
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: adopt_a_family_dev, adopt_a_family_test

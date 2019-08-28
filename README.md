@@ -1,20 +1,40 @@
 # AdoptAFamily
 
+The purpose of this project is to make tracking of families, gifts, receipts, etc. easier.
+
+## Development
+
 To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+```
+script/setup
+script/server
+```
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+To run tests:
 
-## Learn more
+```
+script/test
+script/test test/file/i/want/to/run.exs
+script/iex_test test/file/i/want/to/run/interactively.exs:15
+```
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+To access the interactive elixir console:
+
+```
+script/console
+```
+
+To run commands directly in the docker container:
+
+```
+script/run bash
+```
+
+When you're all done
+
+```
+docker-compose down
+```

@@ -24,7 +24,7 @@ defmodule AdoptAFamily.Accounts do
   """
   def get_user!(id) do
     User
-    |> select([:email, :name, :username]) # Don't expose other values
+    |> select([:id, :email, :name, :username]) # Don't expose other values
     |> Repo.get!(id)
   end
 

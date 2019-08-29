@@ -17,10 +17,6 @@ defmodule AdoptAFamilyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/users", UserController, except: [:index, :show]
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", AdoptAFamilyWeb do
-  #   pipe_through :api
-  # end
 end

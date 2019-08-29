@@ -1,0 +1,6 @@
+<h1>Edit User</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :update, @user)) %>
+
+<span><%= link "Delete Account", to: Routes.user_path(@conn, :delete, @user), method: :delete, data: [confirm: "Are you sure?"] %></span>
+<span> | <%= link "Back", to: Routes.page_path(@conn, :index) %></span>

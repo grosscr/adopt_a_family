@@ -9,6 +9,10 @@ config :adopt_a_family, AdoptAFamilyWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Configure your database
+hostname = System.get_env("DB_HOST") || "localhost"
 config :adopt_a_family, AdoptAFamily.Repo,
+  username: "admin", # TODO: Update me
+  password: "admin", # TODO: Update me
+  database: "adopt_a_family_test",
+  hostname: hostname,
   pool: Ecto.Adapters.SQL.Sandbox

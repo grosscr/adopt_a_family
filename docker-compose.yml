@@ -16,7 +16,6 @@ services:
       - 4000:4000
     environment:
       MIX_ENV: dev
-      DB_NAME: adopt_a_family_dev
 
   test:
     image: adopt_a_family
@@ -27,7 +26,7 @@ services:
       - postgres
     environment:
       MIX_ENV: test
-      DB_NAME: adopt_a_family_test
+      DB_HOST: postgres
     command: ["mix", "test"]
 
   postgres:

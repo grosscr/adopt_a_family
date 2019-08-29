@@ -29,10 +29,3 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
-# Configure your database
-config :adopt_a_family, AdoptAFamily.Repo,
-  username: "admin", # TODO: Update me
-  password: "admin", # TODO: Update me
-  database: System.get_env("DB_NAME"),
-  hostname: "postgres",
-  pool_size: 10

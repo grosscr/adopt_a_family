@@ -5,27 +5,37 @@
     </div>
   <% end %>
 
-  <%= label f, :username %>
-  <%= text_input f, :username %>
-  <%= error_tag f, :username %>
+  <div class='form-group'>
+    <%= label f, :username %>
+    <%= text_input f, :username, class: "form-control"  %>
+    <%= error_tag f, :username %>
+  </div>
 
-  <%= label f, :password %>
-  <%= password_input f, :password %>
-  <%= error_tag f, :password %>
+  <div class='form-group'>
+    <%= label f, :password %>
+    <%= password_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
 
-  <%= label f, :password_confirmation %>
-  <%= password_input f, :password_confirmation %>
-  <%= error_tag f, :password_confirmation %>
+  <div class='form-group'>
+    <%= label f, :password_confirmation %>
+    <%= password_input f, :password_confirmation, class: "form-control" %>
+    <%= error_tag f, :password_confirmation %>
+  </div>
 
-  <%= label f, :email %>
-  <%= text_input f, :email %>
-  <%= error_tag f, :email %>
+  <div class='form-group'>
+    <%= label f, :email %>
+    <%= text_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
+  <div class='form-group'>
+    <%= label f, :name %>
+    <%= text_input f, :name, class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
 
-  <div>
-    <%= submit "Save" %>
+  <div class='form-group'>
+    <%= submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>

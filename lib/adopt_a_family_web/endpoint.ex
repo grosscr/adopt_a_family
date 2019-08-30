@@ -39,6 +39,7 @@ defmodule AdoptAFamilyWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
+    max_age: 2*60*60, # 2 hour cookie expiration
     key: "_adopt_a_family_key",
     signing_salt: "UCpOHhX2"
 

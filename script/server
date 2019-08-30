@@ -2,4 +2,6 @@
 
 set -euo pipefail
 
-docker-compose up web
+docker-compose up -d web
+
+docker-compose logs -f || docker-compose stop web

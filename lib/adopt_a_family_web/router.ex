@@ -14,12 +14,18 @@ defmodule AdoptAFamilyWeb.Router do
   end
 
   scope "/", AdoptAFamilyWeb do
-    pipe_through :browser
+    pipe_through [:browser, AdoptAFamilyWeb.Plugs.Guest]
 
-    get "/", PageController, :index
-    resources "/users", UserController, except: [:index, :show]
+    resources "/register", UserController, only: [:new, :create]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
+  end
+
+  scope "/", AdoptAFamilyWeb do
+    pipe_through [:browser, AdoptAFamilyWeb.Plugs.Auth]
+
+    get "/", PageController, :index
+    resources "/profile", UserController, only: [:edit, :update, :delete]
     delete "/logout", SessionController, :delete
   end
 end

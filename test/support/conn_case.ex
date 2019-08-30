@@ -25,18 +25,6 @@ defmodule AdoptAFamilyWeb.ConnCase do
       @endpoint AdoptAFamilyWeb.Endpoint
 
       def session_conn() do
-        opts =
-          Plug.Session.init(
-            store: :cookie,
-            key: "foobar",
-            encryption_salt: "encrypted cookie salt",
-            signing_salt: "signing salt",
-            log: false,
-            encrypt: false
-          )
-        build_conn()
-        |> Plug.Session.call(opts)
-        |> fetch_session()
       end
     end
   end
@@ -48,6 +36,35 @@ defmodule AdoptAFamilyWeb.ConnCase do
       Ecto.Adapters.SQL.Sandbox.mode(AdoptAFamily.Repo, {:shared, self()})
     end
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    {:ok, user} = AdoptAFamily.Accounts.create_user(%{
+      email: "staged@email.com",
+      username: "staged_username",
+      name: "staged name",
+      password: "password",
+      password_confirmation: "password"
+    })
+
+    opts =
+      Plug.Session.init(
+        store: :cookie,
+        key: "foobar",
+        encryption_salt: "encrypted cookie salt",
+        signing_salt: "signing salt",
+        log: false,
+        encrypt: false
+      )
+    session_conn = Phoenix.ConnTest.build_conn()
+                |> Plug.Session.call(opts)
+                |> Plug.Conn.fetch_session()
+
+    auth_conn = Phoenix.ConnTest.build_conn()
+                |> Plug.Test.init_test_session(current_user_id: user.id)
+
+    {:ok, %{
+      conn: Phoenix.ConnTest.build_conn(),
+      session_conn: session_conn,
+      auth_conn: auth_conn,
+      staged_user: user
+    }}
   end
 end

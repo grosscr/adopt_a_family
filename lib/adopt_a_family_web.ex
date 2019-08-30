@@ -41,6 +41,7 @@ defmodule AdoptAFamilyWeb do
 
       import AdoptAFamilyWeb.ErrorHelpers
       import AdoptAFamilyWeb.Gettext
+      import AdoptAFamily.Accounts.Auth, only: [signed_in?: 1]
       alias AdoptAFamilyWeb.Router.Helpers, as: Routes
     end
   end

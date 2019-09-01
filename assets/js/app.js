@@ -8,9 +8,10 @@ import css from "../css/app.css"
 // in "webpack.config.js".
 //
 // Import dependencies
+import 'phoenix_html'
+import 'bootstrap'
+import 'jquery'
 //
-import "phoenix_html"
-
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:

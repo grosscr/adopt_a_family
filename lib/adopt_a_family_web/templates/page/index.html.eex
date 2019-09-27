@@ -1,8 +1,14 @@
 <div class="row justify-content-center">
   <div class= "mt-2 mb-2">
-    <img src="<%= Routes.static_path(@conn, "/images/adopt_a_family.jpg") %>" alt="Wrapping Crew"/>
+    <img src="<%= Routes.static_path(@conn, "/images/adopt_a_family.jpg") %>" alt="Wrapping Crew 2018"/>
   </div>
   <div class= "mt-2 mb-2">
-    <img src="<%= Routes.static_path(@conn, "/images/gifts.jpg") %>" alt="Presents"/>
+    <img src="<%= Routes.static_path(@conn, "/images/gifts.jpg") %>" alt="Presents 2018"/>
+  </div>
+  <div class= "mt-2 mb-2">
+    <img src="<%= Routes.static_path(@conn, "/images/gifts2.jpg") %>" alt="Presents1 2016"/>
+  </div>
+  <div class= "mt-2 mb-2">
+    <img src="<%= Routes.static_path(@conn, "/images/gifts3.jpg") %>" alt="Presents2 2016"/>
   </div>
 </div>

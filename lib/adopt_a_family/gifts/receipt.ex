@@ -6,6 +6,8 @@ defmodule AdoptAFamily.Gifts.Receipt do
     field :receipt, :binary
 
     timestamps()
+
+    has_one(:gift, AdoptAFamily.Gifts.Gift)
   end
 
   @doc false

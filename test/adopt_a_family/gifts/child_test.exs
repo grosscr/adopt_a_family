@@ -5,17 +5,11 @@ defmodule AdoptAFamily.Gifts.ChildTest do
 
   describe "changeset/2" do
     setup do
-      {:ok, family} = %AdoptAFamily.Gifts.Family{}
-                      |> AdoptAFamily.Gifts.Family.changeset(%{
-                        head_of_house: "Head",
-                        clinician: "Clinician"
-                      })
-                      |> Repo.insert()
       valid_attrs = %{
         name: "John Doe",
         gender: "male",
         age: 10,
-        family_id: family.id
+        family_id: 1
       }
       %{attrs: valid_attrs}
     end

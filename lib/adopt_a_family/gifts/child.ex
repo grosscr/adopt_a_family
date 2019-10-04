@@ -10,7 +10,8 @@ defmodule AdoptAFamily.Gifts.Child do
 
     timestamps()
 
-    belongs_to(:family, Gifts.Family)
+    belongs_to(:family, AdoptAFamily.Gifts.Family)
+    has_many(:gifts, AdoptAFamily.Gifts.Gift)
   end
 
   @doc false

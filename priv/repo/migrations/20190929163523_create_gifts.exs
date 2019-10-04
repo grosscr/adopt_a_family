@@ -8,7 +8,7 @@ defmodule AdoptAFamily.Repo.Migrations.CreateGifts do
       add :purchaser_id, :integer
       add :price, :decimal
       add :via_paypal, :boolean, default: false, null: false
-      add :reciept_id, :integer
+      add :receipt_id, :integer
       add :child_id, :integer
       add :purchased, :boolean, default: false, null: false
 

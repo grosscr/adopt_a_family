@@ -1,19 +1,19 @@
-defmodule AdoptAFamily.Gifts.GiftTest do
+defmodule AdoptAFamily.Families.FamilyGiftTest do
   use AdoptAFamily.DataCase
-  alias AdoptAFamily.Gifts.Gift
+  alias AdoptAFamily.Families.FamilyGift
   alias Ecto.Changeset
 
   describe "changeset/2" do
     setup do
       valid_attrs = %{
         item: "Present",
-        child_id: 1
+        family_id: 1
       }
       %{attrs: valid_attrs}
     end
 
     def get_changeset(attrs) do
-      Gift.changeset(%Gift{}, attrs)
+      FamilyGift.changeset(%FamilyGift{}, attrs)
     end
 
     test "valid data creates a valid changeset", %{attrs: attrs} do
@@ -24,7 +24,7 @@ defmodule AdoptAFamily.Gifts.GiftTest do
     test "missing required params creates an invalid changeset" do
       assert %Ecto.Changeset{} = changeset = get_changeset(%{})
       refute changeset.valid?
-      assert Keyword.keys(changeset.errors) == [:item, :child_id]
+      assert Keyword.keys(changeset.errors) == [:item, :family_id]
     end
 
     test "invalid price creates an invalid changeset", %{attrs: attrs} do

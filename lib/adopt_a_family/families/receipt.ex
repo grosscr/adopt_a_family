@@ -1,4 +1,4 @@
-defmodule AdoptAFamily.Gifts.Receipt do
+defmodule AdoptAFamily.Families.Receipt do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,7 +7,7 @@ defmodule AdoptAFamily.Gifts.Receipt do
 
     timestamps()
 
-    has_one(:gift, AdoptAFamily.Gifts.Gift)
+    has_one(:gift, AdoptAFamily.Families.Gift)
   end
 
   @doc false

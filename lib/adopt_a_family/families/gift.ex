@@ -1,25 +1,26 @@
-defmodule AdoptAFamily.Gifts.FamilyGift do
+defmodule AdoptAFamily.Families.Gift do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "family_gifts" do
+  schema "gifts" do
     field :item, :string
     field :price, :decimal
     field :purchased, :boolean, default: false
+    field :size, :string
     field :via_paypal, :boolean, default: false
 
     timestamps()
 
-    belongs_to(:family, AdoptAFamily.Gifts.Family)
+    belongs_to(:child, AdoptAFamily.Families.Child)
     belongs_to(:user, AdoptAFamily.Accounts.User, foreign_key: :purchaser_id)
-    belongs_to(:receipt, AdoptAFamily.Gifts.Receipt)
+    belongs_to(:receipt, AdoptAFamily.Families.Receipt)
   end
 
   @doc false
-  def changeset(family_gift, attrs) do
-    family_gift
-    |> cast(attrs, [:item, :purchaser_id, :price, :via_paypal, :receipt_id, :family_id, :purchased])
-    |> validate_required([:item, :family_id])
+  def changeset(gift, attrs) do
+    gift
+    |> cast(attrs, [:item, :size, :purchaser_id, :price, :via_paypal, :receipt_id, :child_id, :purchased])
+    |> validate_required([:item, :child_id])
     |> validate_number(:price, greater_than: 0)
     |> validate_receipt_if_paypal()
   end

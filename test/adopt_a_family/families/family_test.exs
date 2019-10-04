@@ -1,6 +1,6 @@
-defmodule AdoptAFamily.Gifts.FamilyTest do
+defmodule AdoptAFamily.Families.FamilyTest do
   use AdoptAFamily.DataCase
-  alias AdoptAFamily.Gifts.Family
+  alias AdoptAFamily.Families.Family
   alias Ecto.Changeset
 
   describe "changeset/2" do

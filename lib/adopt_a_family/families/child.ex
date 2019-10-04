@@ -1,4 +1,4 @@
-defmodule AdoptAFamily.Gifts.Child do
+defmodule AdoptAFamily.Families.Child do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -10,8 +10,8 @@ defmodule AdoptAFamily.Gifts.Child do
 
     timestamps()
 
-    belongs_to(:family, AdoptAFamily.Gifts.Family)
-    has_many(:gifts, AdoptAFamily.Gifts.Gift)
+    belongs_to(:family, AdoptAFamily.Families.Family)
+    has_many(:gifts, AdoptAFamily.Families.Gift)
   end
 
   @doc false

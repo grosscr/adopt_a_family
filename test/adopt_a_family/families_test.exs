@@ -70,13 +70,13 @@ defmodule AdoptAFamily.FamiliesTest do
     end
 
     test "add_gift/2 doesn't remove the first gift", %{
-      family: family, child: child, gift_attrs: gift_attrs, size_gift_attrs: attrs
+      family: %{id: family_id}, child: child, gift_attrs: gift_attrs, size_gift_attrs: attrs
     } do
       {:ok, %Gift{} = _gift} = Families.add_gift(child, gift_attrs)
       assert {:ok, %Gift{} = gift} = Families.add_gift(child, attrs)
       assert gift.item == attrs.item
       assert gift.size == attrs.size
-      child_gifts = Families.children_from_family(family)
+      child_gifts = Families.children_from_family(family_id)
                     |> Enum.at(0)
                     |> Map.fetch!(:gifts)
       assert Enum.count(child_gifts) == 2
@@ -125,7 +125,7 @@ defmodule AdoptAFamily.FamiliesTest do
       {:ok, gift3} = Families.add_gift(child2, %{item: "Gift 3"})
 
       %{
-        family: family,
+        family_id: family.id,
         children: [child1, child2],
         child1_gifts: [gift1, gift2],
         child2_gifts: [gift3]
@@ -133,13 +133,13 @@ defmodule AdoptAFamily.FamiliesTest do
     end
 
     test "children_from_family/1 returns an empty list if the family doesn't exist" do
-      assert [] = Families.children_from_family(%Family{id: 0})
+      assert [] = Families.children_from_family(0)
     end
 
     test "children_from_family/1 gets all children and their gifts for the family", %{
-      family: family, children: staged_children
+      family_id: family_id, children: staged_children
     } = context do
-      children = Families.children_from_family(family)
+      children = Families.children_from_family(family_id)
       assert Enum.count(children) == Enum.count(staged_children)
       Enum.each(children, fn child ->
         check_gifts(child, context)

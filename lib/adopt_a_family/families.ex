@@ -89,11 +89,11 @@ defmodule AdoptAFamily.Families do
 
   ## Examples
 
-      iex> children_from_family(%Family{})
+      iex> children_from_family(family_id)
       [%Child{}]
 
   """
-  def children_from_family(%Family{id: family_id}) do
+  def children_from_family(family_id) do
     Repo.all(from(c in Child,
       join: f in assoc(c, :family),
       join: g in assoc(c, :gifts),

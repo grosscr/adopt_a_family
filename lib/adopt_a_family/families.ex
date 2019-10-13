@@ -81,7 +81,14 @@ defmodule AdoptAFamily.Families do
 
   """
   def all() do
-    Repo.all(Family)
+    from(f in Family,
+      left_join: c in Child,
+      on: [family_id: f.id],
+      group_by: [f.id],
+      select: [f, count(c.id)]
+    )
+    |> Repo.all
+    |> Enum.map(fn [f, count] -> Map.put_new(f, :child_count, count) end)
   end
 
   @doc """

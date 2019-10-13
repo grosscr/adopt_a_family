@@ -98,7 +98,12 @@ defmodule AdoptAFamily.FamiliesTest do
     end
 
     test "get_families/1 returns a list of families", %{families: families} do
-      assert Families.all == families
+      assert Enum.count(Families.all) == Enum.count(families)
+    end
+
+    test "get_families/1 sums up the number of children for each family" do
+      [family1, _] = Families.all
+      assert family1.child_count == 0
     end
   end
 

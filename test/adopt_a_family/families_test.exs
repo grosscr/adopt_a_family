@@ -83,6 +83,25 @@ defmodule AdoptAFamily.FamiliesTest do
     end
   end
 
+  describe "get_families" do
+    setup do
+      {:ok, family1} = Families.create_family(%{
+        head_of_house: "Head of house1",
+        clinician: "Clinician"
+      })
+      {:ok, family2} = Families.create_family(%{
+        head_of_house: "Head of house2",
+        clinician: "Clinician"
+      })
+
+      %{families: [family1, family2]}
+    end
+
+    test "get_families/1 returns a list of families", %{families: families} do
+      assert Families.all == families
+    end
+  end
+
   describe "children_from_family" do
     setup do
       {:ok, family} = Families.create_family(%{

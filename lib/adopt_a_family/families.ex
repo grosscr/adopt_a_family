@@ -72,6 +72,19 @@ defmodule AdoptAFamily.Families do
   end
 
   @doc """
+  Get all families
+
+  ## Examples
+
+      iex> all()
+      [%Family{}]
+
+  """
+  def all() do
+    Repo.all(Family)
+  end
+
+  @doc """
   Gets all the children and corresponding gifts for the provided family
 
   ## Examples

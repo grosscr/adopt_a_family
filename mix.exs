@@ -45,7 +45,9 @@ defmodule AdoptAFamily.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:comeonin, "~> 5.0"},
       {:bcrypt_elixir, "~> 2.0"},
-      {:double, "~> 0.7"}
+      {:double, "~> 0.7"},
+      {:phoenix_live_view, "~> 0.3.0"},
+      {:floki, ">= 0.0.0", only: :test}
     ]
   end
 

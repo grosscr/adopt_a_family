@@ -15,7 +15,10 @@ config :adopt_a_family, AdoptAFamilyWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "uH7QlJldXh5vX9o8B07MLPTFA5j+YnZkm/U+u/W4hjsuZN74a+dhiNQBUhnNtU/i",
   render_errors: [view: AdoptAFamilyWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: AdoptAFamily.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: AdoptAFamily.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+     signing_salt: "SECRET_SALT" # TODO: UPDATE ME
+   ]
 
 # Configures Elixir's Logger
 config :logger, :console,

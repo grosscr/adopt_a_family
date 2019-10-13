@@ -83,7 +83,7 @@ defmodule AdoptAFamily.FamiliesTest do
     end
   end
 
-  describe "get_families" do
+  describe "all" do
     setup do
       {:ok, family1} = Families.create_family(%{
         head_of_house: "Head of house1",
@@ -97,13 +97,41 @@ defmodule AdoptAFamily.FamiliesTest do
       %{families: [family1, family2]}
     end
 
-    test "get_families/1 returns a list of families", %{families: families} do
+    test "all/0 returns a list of families", %{families: families} do
       assert Enum.count(Families.all) == Enum.count(families)
     end
 
-    test "get_families/1 sums up the number of children for each family" do
+    test "all/0 sums up the number of children for each family" do
       [family1, _] = Families.all
       assert family1.child_count == 0
+    end
+  end
+
+  describe "get_family" do
+    setup do
+      {:ok, family} = Families.create_family(%{
+        head_of_house: "Head of house1",
+        clinician: "Clinician"
+      })
+      {:ok, gift} = Families.add_gift(family, %{item: "Kroger gift card"})
+
+      %{
+        family: family,
+        gift: gift
+      }
+    end
+
+    test "get_family/1 returns the family with preloaded gifts", %{family: staged_family, gift: gift} do
+      family = Families.get_family(staged_family.id)
+      assert family.head_of_house == staged_family.head_of_house
+      assert family.clinician == staged_family.clinician
+      assert family.family_gifts == [gift]
+    end
+
+    test "get_family/1 raises an error if the family doesn't exist" do
+      assert_raise Ecto.NoResultsError, fn ->
+        Families.get_family(0)
+      end
     end
   end
 

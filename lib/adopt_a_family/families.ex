@@ -72,7 +72,7 @@ defmodule AdoptAFamily.Families do
   end
 
   @doc """
-  Get all families
+  Get all families and the number of children in them
 
   ## Examples
 
@@ -92,6 +92,23 @@ defmodule AdoptAFamily.Families do
   end
 
   @doc """
+  Get a family and related family gifts
+
+  ## Examples
+
+      iex> get_family(1)
+      %Family{}
+
+  """
+  def get_family(id) do
+    Repo.one!(from(f in Family,
+      join: g in assoc(f, :family_gifts),
+      where: f.id == ^id,
+      preload: [family_gifts: g])
+    )
+  end
+
+  @doc """
   Gets all the children and corresponding gifts for the provided family
 
   ## Examples
@@ -99,6 +116,8 @@ defmodule AdoptAFamily.Families do
       iex> children_from_family(family_id)
       [%Child{}]
 
+      iex> children_from_family(0)
+      raise Ecto.NoResultsError
   """
   def children_from_family(family_id) do
     Repo.all(from(c in Child,

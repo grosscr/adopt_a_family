@@ -5,7 +5,7 @@ defmodule AdoptAFamily.Families.Gift do
   schema "gifts" do
     field :item, :string
     field :price, :decimal
-    field :purchased, :boolean, default: false
+    field :shipped, :boolean, default: false
     field :size, :string
     field :via_paypal, :boolean, default: false
 
@@ -19,7 +19,7 @@ defmodule AdoptAFamily.Families.Gift do
   @doc false
   def changeset(gift, attrs) do
     gift
-    |> cast(attrs, [:item, :size, :purchaser_id, :price, :via_paypal, :receipt_id, :child_id, :purchased])
+    |> cast(attrs, [:item, :size, :purchaser_id, :price, :via_paypal, :receipt_id, :child_id, :shipped])
     |> validate_required([:item, :child_id])
     |> validate_number(:price, greater_than: 0)
     |> validate_receipt_if_paypal()

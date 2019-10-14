@@ -1,0 +1,35 @@
+<div class='row justify-content-center'>
+  <h1>Families</h1>
+</div>
+<div class='row'>
+  <div>
+    <%= link "New Family", to: Routes.family_path(@conn, :new), class: "btn btn-secondary" %>
+  </div>
+  <br>
+  <br>
+
+  <table class='table table-dark table-striped'>
+    <thead>
+      <tr>
+        <th scope='col'>Head of House</th>
+        <th scope='col'>Clinician</th>
+        <th scope='col'>Number of Children</th>
+        <%# <th scope='col'>Percentage of Gifts Purchased</th> %>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for family <- @families do %>
+        <tr>
+          <td><%= family.head_of_house %></td>
+          <td><%= family.clinician %></td>
+          <td><%= family.child_count %></td>
+          <%# <td>0%</td> %>
+          <td>
+            <%= link "Show", to: Routes.family_path(@conn, :show, family), class: 'btn btn-secondary' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

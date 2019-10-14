@@ -28,5 +28,6 @@ defmodule AdoptAFamilyWeb.Router do
     get "/", PageController, :index
     resources "/profile", UserController, only: [:edit, :update, :delete]
     delete "/logout", SessionController, :delete
+    resources "/families", FamilyController, except: [:edit, :update, :delete]
   end
 end

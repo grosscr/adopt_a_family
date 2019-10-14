@@ -18,6 +18,12 @@
                 <li class="nav-item">
                   <%= link "Home", to: Routes.page_path(@conn, :index), class: "nav-link" %>
                 </li>
+                <li class="nav-item">
+                  <%= link "Sign up for Gifts", to: Routes.family_path(@conn, :index), class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link "Donate Funds for Gifts", to: 'https://paypal.me/pools/c/8iVUubI5kE', class: "nav-link" %>
+                </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= @current_user.name %>

@@ -1,0 +1,48 @@
+<div class='row justify-content-center'>
+  <h1><%= @family.head_of_house %> Family</h1>
+</div>
+<div class='row justify-content-center'>
+  <div class="accordion" id="childrenAccordian">
+    <%= for {child, i} <- Enum.with_index(@children) do %>
+      <div class="card mw-100">
+        <div class="card-header" id="headerChild<%= i %>">
+          <h2 class="mb-0">
+            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseChild<%= i %>" aria-expanded="false" aria-controls="collapseChild<%= i %>">
+              <span class='pr-5'><%= child.name %></span>
+              <span class='pr-5'>Age: <%= child.age %></span>
+              <span class='pl-5'>Interests: <%= child.interests %></span>
+            </button>
+          </h2>
+        </div>
+        <div id="collapseChild<%= i %>" class="collapse" aria-labelledby="#headerChild<%= i %>" data-parent="#childrenAccordian">
+          <div class="card-body">
+            <table class='table table-dark table-striped'>
+              <thead>
+                <tr>
+                  <th scope='col'>Item</th>
+                  <th scope='col'>Size</th>
+                  <th scope='col'>Purchaser</th>
+                  <th scope='col'>Price</th>
+                  <th scope='col'>Shipped?</th>
+                  <th scope='col'>Purchased via PayPal?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= for gift <- child.gifts do %>
+                  <tr>
+                    <td><%= gift.item %></td>
+                    <td><%= gift.size %></td>
+                    <td><%= gift.purchaser_id %></td>
+                    <td><%= gift.price %></td>
+                    <td><%= gift.shipped %></td>
+                    <td><%= gift.via_paypal %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

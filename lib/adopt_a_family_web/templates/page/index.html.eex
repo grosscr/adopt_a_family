@@ -1,4 +1,49 @@
 <div class="row justify-content-center">
+  <div class= "row mt-2 mb-2">
+    <p>Welcome! There are two different ways you can particpate.</p>
+  </div>
+</div>
+<div class="row">
+  <div class= "mt-2 mb-2">
+    <p>
+      <button class="btn btn-secondary" data-toggle="collapse" href="#collapsePurchase" role="button" aria-expanded="false" aria-controls="collapsePurchase">Signup to Buy Gifts</button>
+      <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseDonate" aria-expanded="false" aria-controls="collapseDonate">Donate Funds for Gifts</button>
+    </p>
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="collapsePurchase">
+          <div class="card card-body">
+            You can use the navigation button above to go see the families/children/gifts available for purchase. You can purchase the gifts on your own and get them to the wrapping party yourself, or you can have them shipped directly to the ScriptDrop office where the wrapping party will be held.<br>
+            Gifts that are shipped should include a gift tag with the following information:
+            <ul>
+              <li>Family Name</li>
+              <li>Child's Name and Age</li>
+              <li>Clinician's Name</li>
+              <li>Purchaser's Name</li>
+            </ul>
+            Shipping address:
+            <p class='pl-5'>
+              ScriptDrop<br>
+              Attn: Adopt-a-Family<br>
+              855 Grandview Ave.<br>
+              Suite 110<br>
+              Columbus, OH 43215
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="collapse multi-collapse" id="collapseDonate">
+          <div class="card card-body">
+            You can use the navigation button above to donate money to the PayPal pool. This money will be used to purchase gifts for kids. This is what we use to make sure all the kids end up with something as our time starts to run out. Any leftover money will either be used to purchase "In Kind Gifts" that are donated to St. Vincent's directly or we will write a check of the remainder and donate it directly.
+            <img src="<%= Routes.static_path(@conn, "/images/paypal-group.png") %>" alt="Paypal QR Code" style="width:320px;height:320px;" class="mx-auto"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
   <div class= "mt-2 mb-2">
     <img src="<%= Routes.static_path(@conn, "/images/adopt_a_family.jpg") %>" alt="Wrapping Crew 2018"/>
   </div>

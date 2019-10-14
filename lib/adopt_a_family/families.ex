@@ -102,7 +102,7 @@ defmodule AdoptAFamily.Families do
   """
   def get_family(id) do
     Repo.one!(from(f in Family,
-      join: g in assoc(f, :family_gifts),
+      left_join: g in assoc(f, :family_gifts),
       where: f.id == ^id,
       preload: [family_gifts: g])
     )

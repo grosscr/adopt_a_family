@@ -114,9 +114,14 @@ defmodule AdoptAFamily.FamiliesTest do
         clinician: "Clinician"
       })
       {:ok, gift} = Families.add_gift(family, %{item: "Kroger gift card"})
+      {:ok, family_no_gift} = Families.create_family(%{
+        head_of_house: "Head of house1",
+        clinician: "Clinician"
+      })
 
       %{
         family: family,
+        family_no_gift: family_no_gift,
         gift: gift
       }
     end
@@ -126,6 +131,13 @@ defmodule AdoptAFamily.FamiliesTest do
       assert family.head_of_house == staged_family.head_of_house
       assert family.clinician == staged_family.clinician
       assert family.family_gifts == [gift]
+    end
+
+    test "get_family/1 returns the family without exploding when no gifts", %{family_no_gift: staged_family} do
+      family = Families.get_family(staged_family.id)
+      assert family.head_of_house == staged_family.head_of_house
+      assert family.clinician == staged_family.clinician
+      assert family.family_gifts == []
     end
 
     test "get_family/1 raises an error if the family doesn't exist" do

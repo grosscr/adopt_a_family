@@ -16,6 +16,7 @@ defmodule AdoptAFamily.Families.Family do
   def changeset(family, attrs) do
     family
     |> cast(attrs, [:head_of_house, :clinician])
+    |> cast_assoc(:children)
     |> validate_required([:head_of_house, :clinician])
   end
 end

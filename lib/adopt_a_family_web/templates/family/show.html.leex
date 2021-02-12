@@ -4,10 +4,11 @@
 <div class='row justify-content-center'>
   <div class="accordion" id="childrenAccordian">
     <%= for {child, i} <- Enum.with_index(@children) do %>
+      <% color = if child.gender == "female", do: "#F88B9D", else: "#8ECEFD" %>
       <div class="card mw-100">
         <div class="card-header" id="headerChild<%= i %>">
           <h2 class="mb-0">
-            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseChild<%= i %>" aria-expanded="false" aria-controls="collapseChild<%= i %>">
+            <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapseChild<%= i %>" aria-expanded="false" aria-controls="collapseChild<%= i %>" style="background-color:<%= color %>">
               <span class='pr-5'><%= child.name %></span>
               <span class='pr-5'>Age: <%= child.age %></span>
               <span class='pl-5'>Interests: <%= child.interests %></span>
@@ -24,18 +25,18 @@
                   <th scope='col'>Purchaser</th>
                   <th scope='col'>Price</th>
                   <th scope='col'>Shipped?</th>
-                  <th scope='col'>Purchased via PayPal?</th>
                 </tr>
               </thead>
               <tbody>
                 <%= for gift <- child.gifts do %>
                   <tr>
-                    <td><%= gift.item %></td>
-                    <td><%= gift.size %></td>
-                    <td><%= gift.purchaser_id %></td>
-                    <td><%= gift.price %></td>
-                    <td><%= gift.shipped %></td>
-                    <td><%= gift.via_paypal %></td>
+                    <%#= f = form_for gift, "#", [phx_change: :update, phx_submit: :send] %>
+                    <td><%#= text_input f, :item %><%= gift.item %></td>
+                    <td><%#= text_input f, :size %><%= gift.size %></td>
+                    <td><%#= text_input f, :purchaser_id %><%= if gift.purchaser, do: gift.purchaser.name %></td>
+                    <td><%#= text_input f, :price %><%= gift.price %></td>
+                    <td><%#= text_input f, :shipped %><<%= gift.shipped %>/td>
+                    <%# </form> %>
                   </tr>
                 <% end %>
               </tbody>

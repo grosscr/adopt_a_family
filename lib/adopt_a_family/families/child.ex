@@ -18,7 +18,8 @@ defmodule AdoptAFamily.Families.Child do
   def changeset(child, attrs) do
     child
     |> cast(attrs, [:name, :gender, :age, :interests, :family_id])
-    |> validate_required([:name, :gender, :age, :family_id])
+    |> cast_assoc(:gifts)
+    |> validate_required([:name, :gender, :age])
     |> validate_number(:age, greater_than: 0)
     |> validate_inclusion(:gender, ["male", "female"])
   end

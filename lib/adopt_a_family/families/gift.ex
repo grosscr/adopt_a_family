@@ -12,7 +12,7 @@ defmodule AdoptAFamily.Families.Gift do
     timestamps()
 
     belongs_to(:child, AdoptAFamily.Families.Child)
-    belongs_to(:user, AdoptAFamily.Accounts.User, foreign_key: :purchaser_id)
+    belongs_to(:purchaser, AdoptAFamily.Accounts.User, foreign_key: :purchaser_id)
     belongs_to(:receipt, AdoptAFamily.Families.Receipt)
   end
 
@@ -20,7 +20,7 @@ defmodule AdoptAFamily.Families.Gift do
   def changeset(gift, attrs) do
     gift
     |> cast(attrs, [:item, :size, :purchaser_id, :price, :via_paypal, :receipt_id, :child_id, :shipped])
-    |> validate_required([:item, :child_id])
+    |> validate_required([:item])
     |> validate_number(:price, greater_than: 0)
     |> validate_receipt_if_paypal()
   end

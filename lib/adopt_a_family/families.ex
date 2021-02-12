@@ -26,6 +26,14 @@ defmodule AdoptAFamily.Families do
     |> Repo.insert()
   end
 
+
+  @doc """
+  Create a changeset to change a family
+  """
+  def change_family(%Family{} = family, changes \\ %{}) do
+    Family.changeset(family, changes)
+  end
+
   @doc """
   Adds a child to a family.
 
@@ -122,9 +130,10 @@ defmodule AdoptAFamily.Families do
   def children_from_family(family_id) do
     Repo.all(from(c in Child,
       join: f in assoc(c, :family),
-      join: g in assoc(c, :gifts),
+      left_join: g in assoc(c, :gifts),
+      left_join: u in assoc(g, :purchaser),
       where: f.id == ^family_id,
-      preload: [gifts: g])
+      preload: [gifts: {g, purchaser: u}])
     )
   end
 end

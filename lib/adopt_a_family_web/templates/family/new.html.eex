@@ -1,5 +1,98 @@
 <h1>New Family</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.family_path(@conn, :create)) %>
+<%= form_for @changeset, Routes.family_path(@conn, :create), [as: :family], fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+  <fieldset>
+    <div class='form-row'>
+      <div class='col-md-6'>
+        <%= label f, :head_of_house %>
+        <%= text_input f, :head_of_house, class: 'form-control' %>
+        <%= error_tag f, :head_of_house %>
+      </div>
+      <div class='col-md-6'>
+        <%= label f, :clinician %>
+        <%= text_input f, :clinician, class: 'form-control' %>
+        <%= error_tag f, :clinician %>
+      </div>
+    </div>
+    <br>
+    <div class='form-row'>
+      <div class="col-10">
+        <h2>Children</h2>
+      </div>
+      <div class="col-md-2">
+        <a id='add-button' class="btn btn-light btn-block" href="#">
+          Add Child
+        </a>
+      </div>
+    </div>
+    <%= inputs_for f, :children, fn c -> %>
+      <div id="children">
+        <div class="child-form">
+          <div class='form-row'>
+            <div class='form-group col-md-9'>
+              <%= label c, :name %>
+              <%= text_input c, :name, class: 'form-control' %>
+              <%= error_tag c, :name %>
+            </div>
+            <div class='form-group col-md-1'>
+              <%= label c, :age %>
+              <%= text_input c, :age, class: 'form-control' %>
+              <%= error_tag c, :age %>
+            </div>
+            <div class='form-group col-md-2'>
+              <%= label c, :gender %><br>
+              <div class="form-check form-check-inline">
+                <%= radio_button c, :gender, "male", class: 'form-check-input' %>
+                <label>Male</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= radio_button c, :gender, "female", class: 'form-check-input' %>
+                <label>Female</label>
+              </div>
+              <%= error_tag c, :gender %>
+            </div>
+          </div>
+          <div class='form-row'>
+            <div class='form-group col-md-10'>
+              <%= label c, :interests %>
+              <%= text_input c, :interests, class: 'form-control' %>
+              <%= error_tag c, :interests %>
+            </div>
+            <div class="form-group delete-child col-md-2">
+              <a id='dlt-button' class="btn btn-dark btn-block" href="#">
+                Remove Child
+              </a>
+            </div>
+          </div>
+          <h2>Gifts</h2>
+          <%= inputs_for c, :gifts, fn g -> %>
+            <div id="gift-form">
+              <div class='form-row'>
+                <div class='form-group col-md-6'>
+                  <%= label g, :item %>
+                  <%= text_input g, :item, class: 'form-control' %>
+                  <%= error_tag g, :item %>
+                </div>
+                <div class='form-group col-md-6'>
+                  <%= label g, :size %>
+                  <%= text_input g, :size, class: 'form-control' %>
+                  <%= error_tag g, :size %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div>
+      <span><%= submit "Create", class: "btn btn-secondary" %></span>
+      <span><%= link "Back", to: Routes.family_path(@conn, :index), class: "btn btn-secondary float-right" %></span>
+    </div>
+  </fieldset>
+<% end %>
 
-<span><%= link "Back", to: Routes.family_path(@conn, :index) %></span>
